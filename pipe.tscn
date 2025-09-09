@@ -6,6 +6,7 @@
 size = Vector2(150, 400)
 
 [node name="Pipe" type="RigidBody2D"]
+gravity_scale = 0.0
 
 [node name="TopPipe" type="Sprite2D" parent="."]
 position = Vector2(75, 0)
