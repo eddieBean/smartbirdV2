@@ -1,10 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://chn3qrxoka8gy"]
+[gd_scene load_steps=3 format=3 uid="uid://chn3qrxoka8gy"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_sj7mh"]
+[ext_resource type="Texture2D" uid="uid://ckv3jkm3pt2io" path="res://PipeTextureRESIZED.png" id="1_bepn3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78010"]
+size = Vector2(150, 400)
 
 [node name="Pipe" type="RigidBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="TopPipe" type="Sprite2D" parent="."]
+position = Vector2(75, 0)
+scale = Vector2(4.75, 2.77083)
+texture = ExtResource("1_bepn3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("ImageTexture_sj7mh")
+[node name="TopPipeCollider" type="CollisionShape2D" parent="."]
+position = Vector2(75, -3)
+shape = SubResource("RectangleShape2D_78010")
+
+[node name="BottomPipe" type="Sprite2D" parent="."]
+position = Vector2(74, 700)
+rotation = 3.14159
+scale = Vector2(4.75, 2.77083)
+texture = ExtResource("1_bepn3")
+
+[node name="BottomPipeCollider" type="CollisionShape2D" parent="."]
+position = Vector2(75, 700)
+shape = SubResource("RectangleShape2D_78010")
