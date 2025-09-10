@@ -9,7 +9,6 @@ script = ExtResource("1_37p78")
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 60
-text = "Score:"
 
 [node name="messageTimer" type="Timer" parent="."]
 one_shot = true

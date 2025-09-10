@@ -38,7 +38,6 @@ text = "Implementing AI in Flappy Bird"
 horizontal_alignment = 1
 
 [node name="StartingMenu" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
@@ -73,7 +72,7 @@ alignment = 1
 [node name="AISettingsInfo" type="Label" parent="HBoxContainer/VBoxContainer/AISettings"]
 layout_mode = 2
 theme = ExtResource("2_7vrkn")
-text = "AI Agents: 0"
+text = "AI Agents:"
 horizontal_alignment = 1
 
 [node name="AgentSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/AISettings"]

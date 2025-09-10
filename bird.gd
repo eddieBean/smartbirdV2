@@ -25,5 +25,9 @@ func game_over():
 func _on_body_entered(body):
 	game_over()
 
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	game_over()
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	show()
+	$CollisionShape2D.set_deferred("disabled",false)

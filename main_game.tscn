@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://g3glfn331fni"]
+
+[ext_resource type="Script" uid="uid://cll11wdvy26xi" path="res://main_game.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cnlpv5mpqswy6" path="res://bird.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://chn3qrxoka8gy" path="res://pipe.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://baqw0jpdvtogg" path="res://hud.tscn" id="4_1bvp3"]
+
+[sub_resource type="Curve2D" id="Curve2D_7dm0k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1150, 121, 0, 0, 0, 0, 1150, 533)
+}
+point_count = 2
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_0xm2m")
+pipe_scene = ExtResource("2_h2yge")
+
+[node name="Bird" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(120, 350)
+
+[node name="PipePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_7dm0k")
+
+[node name="PipeSpawnLocations" type="PathFollow2D" parent="PipePath"]
+position = Vector2(1150, 121)
+rotation = 1.5708
+
+[node name="PipeSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="startPosition" type="Marker2D" parent="."]
+position = Vector2(120, 350)
+
+[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="game_over" from="." to="." method="_on_game_over"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="hit" from="Bird" to="." method="_on_bird_hit"]
+[connection signal="timeout" from="PipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]

@@ -1,45 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://g3glfn331fni"]
+[gd_scene load_steps=4 format=3 uid="uid://c0fnena3m0yjc"]
 
-[ext_resource type="Script" uid="uid://cll11wdvy26xi" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cnlpv5mpqswy6" path="res://bird.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://chn3qrxoka8gy" path="res://pipe.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://b4bioddi27nup" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://g3glfn331fni" path="res://main_game.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://7qk3wlds7rpi" path="res://main_menu.tscn" id="3_lquwl"]
-[ext_resource type="PackedScene" uid="uid://baqw0jpdvtogg" path="res://hud.tscn" id="4_1bvp3"]
-
-[sub_resource type="Curve2D" id="Curve2D_7dm0k"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648)
-}
-point_count = 2
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
-pipe_scene = ExtResource("2_h2yge")
+
+[node name="MainGame" parent="." instance=ExtResource("2_h2yge")]
 
 [node name="MainMenu" parent="." instance=ExtResource("3_lquwl")]
-offset_left = -470.0
-offset_top = -210.5
-offset_right = 470.0
-offset_bottom = 210.5
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="Bird" parent="." instance=ExtResource("2_0xm2m")]
-
-[node name="PipePath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_7dm0k")
-
-[node name="PipeSpawnLocations" type="PathFollow2D" parent="PipePath"]
-position = Vector2(1152, 0)
-rotation = 1.5708
-
-[node name="PipeSpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
-
-[node name="startPosition" type="Marker2D" parent="."]
-position = Vector2(120, 350)
-
-[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
-
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="start_game" from="MainMenu" to="." method="new_game"]
-[connection signal="hit" from="Bird" to="." method="_on_bird_hit"]
-[connection signal="timeout" from="PipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]
+[connection signal="game_over" from="MainGame" to="." method="_on_main_game_game_over"]
+[connection signal="start_game" from="MainMenu" to="." method="_on_main_menu_start_game"]
