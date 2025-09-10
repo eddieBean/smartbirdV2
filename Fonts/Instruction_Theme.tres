@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d2j8rics1l218"]
+
+[ext_resource type="FontFile" uid="uid://domxu3xy3tg2e" path="res://Fonts/Instruction.otf" id="1_eawlx"]
+
+[resource]
+resource_name = "InstructionTheme"
+default_font = ExtResource("1_eawlx")
+default_font_size = 30

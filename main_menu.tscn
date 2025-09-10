@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://7qk3wlds7rpi"]
+
+[ext_resource type="FontFile" uid="uid://cb7gipnw5bvtb" path="res://Art/airstrike.ttf" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://bphrnt3llogm1" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="Theme" uid="uid://d2j8rics1l218" path="res://Fonts/Instruction_Theme.tres" id="2_7vrkn"]
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_fu7sn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 100
+text = "Smart Bird"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+theme_override_font_sizes/font_size = 40
+text = "Implementing AI in Flappy Bird"
+horizontal_alignment = 1
+
+[node name="StartingMenu" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HumanPlay" type="Label" parent="HBoxContainer/VBoxContainer/StartingMenu"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+text = "Human Controlled Play"
+horizontal_alignment = 1
+
+[node name="HumanPlayButton" type="Button" parent="HBoxContainer/VBoxContainer/StartingMenu"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+text = "\"im better than the AI\""
+
+[node name="AIPlay" type="Label" parent="HBoxContainer/VBoxContainer/StartingMenu"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+text = "Use the AI"
+horizontal_alignment = 1
+
+[node name="AIPlayButton" type="Button" parent="HBoxContainer/VBoxContainer/StartingMenu"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+text = "I understand the weakness of my flesh"
+
+[node name="AISettings" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="AISettingsInfo" type="Label" parent="HBoxContainer/VBoxContainer/AISettings"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+text = "AI Agents: 0"
+horizontal_alignment = 1
+
+[node name="AgentSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/AISettings"]
+layout_mode = 2
+
+[node name="StartAiGame" type="Button" parent="HBoxContainer/VBoxContainer/AISettings"]
+layout_mode = 2
+theme = ExtResource("2_7vrkn")
+text = "Lets Go"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartingMenu/HumanPlayButton" to="." method="_on_human_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartingMenu/AIPlayButton" to="." method="_on_ai_play_button_pressed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/AISettings/AgentSlider" to="." method="_on_agent_slider_value_changed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/AISettings/StartAiGame" to="." method="_on_start_ai_game_pressed"]

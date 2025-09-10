@@ -5,7 +5,7 @@ extends Node2D
 var score
 
 func _ready():
-	new_game()
+	pass
 
 func new_game():
 	score = 0
@@ -33,5 +33,4 @@ func _on_bird_hit() -> void:
 	$PipeSpawnTimer.stop()
 	$HUD.message("U died lmao")
 	
-	print("game over")
 	
