@@ -11,6 +11,12 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 60
 text = "Score:"
 
+[node name="messageTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="mainTitle" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 325.0
+offset_top = 221.0
+offset_right = 810.0
+offset_bottom = 418.0
+theme_override_font_sizes/font_size = 100
