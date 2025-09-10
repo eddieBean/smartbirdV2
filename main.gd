@@ -19,6 +19,17 @@ func _on_pipe_spawn_timer_timeout() -> void:
 	pipe_spawn_location.progress_ratio = randf()
 	
 	pipe.position = pipe_spawn_location.position
-	
-	pipe.linear_velocity = Vector2(-100.0,0.0)
+	var velocity = Vector2(-100.0,0.0)
+	pipe.set_velocity(velocity)
 	add_child(pipe)
+	pipe.player_detected.connect(_increase_score)
+	
+func _increase_score():
+	score += 1
+	$HUD.update_score(score)
+
+
+func _on_bird_hit() -> void:
+	get_tree().call_group("pipes", "queue_free")
+	print("game over")
+	

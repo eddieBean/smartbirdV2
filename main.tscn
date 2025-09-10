@@ -33,4 +33,5 @@ position = Vector2(120, 350)
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="hit" from="Bird" to="." method="_on_bird_hit"]
 [connection signal="timeout" from="PipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]

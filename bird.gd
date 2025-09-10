@@ -17,7 +17,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		linear_velocity = Vector2(0.0,-450.0)
 
-func _on_body_entered(body):
+func game_over():
 	hit.emit()
 	hide()
 	$CollisionShape2D.set_deferred("disabled", true)
+
+func _on_body_entered(body):
+	game_over()
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	game_over()
