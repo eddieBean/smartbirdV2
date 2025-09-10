@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnlpv5mpqswy6"]
+[gd_scene load_steps=3 format=3 uid="uid://cnlpv5mpqswy6"]
 
 [ext_resource type="Script" uid="uid://crcyslna0riii" path="res://bird.gd" id="1_g5k2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5k2s"]
+size = Vector2(40, 40)
 
 [node name="Bird" type="RigidBody2D"]
 script = ExtResource("1_g5k2s")
@@ -10,5 +13,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20.5, 20.5)
+shape = SubResource("RectangleShape2D_g5k2s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

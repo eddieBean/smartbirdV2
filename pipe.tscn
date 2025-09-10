@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://chn3qrxoka8gy"]
+[gd_scene load_steps=4 format=3 uid="uid://chn3qrxoka8gy"]
 
+[ext_resource type="Script" uid="uid://cx14vgu0qf44t" path="res://pipe.gd" id="1_78010"]
 [ext_resource type="Texture2D" uid="uid://ckv3jkm3pt2io" path="res://PipeTextureRESIZED.png" id="1_bepn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78010"]
@@ -7,22 +8,31 @@ size = Vector2(150, 400)
 
 [node name="Pipe" type="RigidBody2D"]
 gravity_scale = 0.0
+script = ExtResource("1_78010")
 
 [node name="TopPipe" type="Sprite2D" parent="."]
-position = Vector2(75, 0)
+position = Vector2(0, -300)
 scale = Vector2(4.75, 2.77083)
 texture = ExtResource("1_bepn3")
 
 [node name="TopPipeCollider" type="CollisionShape2D" parent="."]
-position = Vector2(75, -3)
+position = Vector2(0, -300)
 shape = SubResource("RectangleShape2D_78010")
 
 [node name="BottomPipe" type="Sprite2D" parent="."]
-position = Vector2(74, 700)
+position = Vector2(0, 300)
 rotation = 3.14159
 scale = Vector2(4.75, 2.77083)
 texture = ExtResource("1_bepn3")
 
 [node name="BottomPipeCollider" type="CollisionShape2D" parent="."]
-position = Vector2(75, 700)
+position = Vector2(0, 300)
 shape = SubResource("RectangleShape2D_78010")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PlayerDetectionLine" type="RayCast2D" parent="."]
+position = Vector2(0, -100)
+target_position = Vector2(0, 200)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
