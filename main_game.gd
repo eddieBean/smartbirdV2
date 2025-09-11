@@ -7,14 +7,15 @@ signal game_over
 var score
 
 func _ready():
+	#new_game()
 	pass
-
+	
 func new_game():
 	score = 0
-	$Bird.show()
+	$Bird.start($startPosition.position)
+	show()
 	$HUD.update_score(0)
 	$HUD.startMessage()
-	$Bird.start($startPosition.position)
 	$PipeSpawnTimer.start()
 
 func _on_pipe_spawn_timer_timeout() -> void:
@@ -32,7 +33,7 @@ func _increase_score():
 	$HUD.update_score(score/24)
 
 
-func _on_bird_hit() -> void:
+func _on_bird_hit():
 	get_tree().call_group("pipes", "queue_free")
 	$PipeSpawnTimer.stop()
 	$HUD.message("game over man")

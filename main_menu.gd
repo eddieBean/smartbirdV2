@@ -14,7 +14,7 @@ func _on_ai_play_button_pressed() -> void:
 
 func _on_agent_slider_value_changed(value: float):
 	var intValue = roundi(value)
-	$HBoxContainer/VBoxContainer/AISettings/AISettingsInfo.text = "AI AGENTS:" + str(value)
+	$HBoxContainer/VBoxContainer/AISettings/AISettingsInfo.text = "AI AGENTS:" + str(intValue)
 
 
 func _on_start_ai_game_pressed() -> void:
@@ -23,3 +23,4 @@ func _on_start_ai_game_pressed() -> void:
 
 func _on_human_play_button_pressed() -> void:
 	start_game.emit()
+	

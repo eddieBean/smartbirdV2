@@ -16,7 +16,8 @@ script = ExtResource("1_0xm2m")
 pipe_scene = ExtResource("2_h2yge")
 
 [node name="Bird" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(120, 350)
+position = Vector2(200, 16)
+disable_mode = 2
 
 [node name="PipePath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_7dm0k")

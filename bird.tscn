@@ -17,9 +17,13 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(20.5, 20.5)
 shape = SubResource("RectangleShape2D_g5k2s")
 
+[node name="BirdArea" type="Area2D" parent="."]
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(20, 20)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="BirdArea" to="." method="_on_bird_area_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
