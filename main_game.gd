@@ -30,7 +30,7 @@ func _on_pipe_spawn_timer_timeout() -> void:
 	
 func _increase_score():
 	score += 1
-	$HUD.update_score(score/24)
+	$HUD.update_score(score)
 
 
 func _on_bird_hit():
