@@ -29,5 +29,5 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 
 
 func _on_scoring_box_body_entered(body: Node2D) -> void:
-	print("player detected")
-	player_detected.emit()
+	print("detected: " + body.name)
+	player_detected.emit(body.name)

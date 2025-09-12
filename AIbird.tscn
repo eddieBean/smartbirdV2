@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipgnv8k8xklm"]
+
+[ext_resource type="Script" uid="uid://b37v6o2um4st1" path="res://AIbird.gd" id="1_wi0o5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5k2s"]
+size = Vector2(40, 40)
+
+[node name="AIbird" type="RigidBody2D"]
+script = ExtResource("1_wi0o5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20.5, 20.5)
+shape = SubResource("RectangleShape2D_g5k2s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(20, 20)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
