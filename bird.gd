@@ -3,11 +3,12 @@ extends RigidBody2D
 signal hit
 
 var screen_size
-
+var pastPos
 func start(pos):
-	
-	position = pos
+	pastPos = pos
+	global_position = pos
 	gravity_scale = 1
+	sleeping = false
 	show()
 
 func _ready():
@@ -18,6 +19,18 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		linear_velocity = Vector2(0.0,-450.0)
+
+		
+	if linear_velocity.angle() < 1:
+		$AnimatedSprite2D.play("flap", 1.0, false)
+	else:
+		$AnimatedSprite2D.play("default")
+	
+	var relative_velocity = linear_velocity + Vector2(-100.0,0.0)
+	
+	$AnimatedSprite2D.rotation = -(relative_velocity.angle() - 3*(PI/2)) - PI/10
+	
+	
 
 func game_over():
 	hit.emit()

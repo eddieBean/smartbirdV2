@@ -12,7 +12,7 @@ func _ready():
 	
 func new_game():
 	score = 0
-	$Bird.start($startPosition.position)
+	$Bird.start($startPosition.global_position)
 	show()
 	$HUD.update_score(0)
 	$HUD.startMessage()
@@ -37,6 +37,8 @@ func _increase_score(name):
 func _on_bird_hit():
 	get_tree().call_group("pipes", "queue_free")
 	$PipeSpawnTimer.stop()
+	$Bird.position = ($startPosition.position)
+	$Bird.sleeping = true
 	$HUD.message("game over man")
 	$HUD/scoreLabel.text = ""
 	await get_tree().create_timer(1.5).timeout

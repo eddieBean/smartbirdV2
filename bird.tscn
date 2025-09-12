@@ -1,26 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnlpv5mpqswy6"]
+[gd_scene load_steps=13 format=3 uid="uid://cnlpv5mpqswy6"]
 
 [ext_resource type="Script" uid="uid://crcyslna0riii" path="res://bird.gd" id="1_g5k2s"]
+[ext_resource type="Texture2D" uid="uid://bxgah5dh013i3" path="res://StasSprites/frame_1-removebg-preview.png" id="2_6nk3w"]
+[ext_resource type="Texture2D" uid="uid://dtlidcd4087jo" path="res://StasSprites/down/frame_2-removebg-preview.png" id="3_w265n"]
+[ext_resource type="Texture2D" uid="uid://cjjitsbgxha5s" path="res://StasSprites/down/frame_3-removebg-preview.png" id="4_l2t0q"]
+[ext_resource type="Texture2D" uid="uid://c0m0spls0ac6h" path="res://StasSprites/down/frame_4-removebg-preview.png" id="5_vab2h"]
+[ext_resource type="Texture2D" uid="uid://w38iur3npmge" path="res://StasSprites/down/frame_5-removebg-preview.png" id="6_548is"]
+[ext_resource type="Texture2D" uid="uid://cfqcyw67h1lry" path="res://StasSprites/frame_0-removebg-preview.png" id="7_f430k"]
+[ext_resource type="Texture2D" uid="uid://c0rf5phw2ct1e" path="res://StasSprites/frame_7-removebg-preview.png" id="8_bn747"]
+[ext_resource type="Texture2D" uid="uid://c2nad2lfoc677" path="res://StasSprites/frame_8-removebg-preview.png" id="9_dd6dp"]
+[ext_resource type="Texture2D" uid="uid://b8tatu575jyej" path="res://StasSprites/frame_9-removebg-preview.png" id="10_vox6r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5k2s"]
-size = Vector2(40, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7h38"]
+radius = 13.0
+height = 78.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_81qbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6nk3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w265n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l2t0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vab2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_548is")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_dd6dp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bn747")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f430k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vox6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6nk3w")
+}],
+"loop": false,
+"name": &"flap",
+"speed": 5.0
+}]
 
 [node name="Bird" type="RigidBody2D"]
+lock_rotation = true
 script = ExtResource("1_g5k2s")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20.5, 20.5)
-shape = SubResource("RectangleShape2D_g5k2s")
+shape = SubResource("CapsuleShape2D_a7h38")
 
 [node name="BirdArea" type="Area2D" parent="."]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(20, 20)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.8147e-06, 1.90735e-06)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_81qbw")
+animation = &"flap"
+offset = Vector2(0, -100)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
